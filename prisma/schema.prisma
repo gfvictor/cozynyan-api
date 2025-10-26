@@ -10,7 +10,9 @@ datasource db {
 
 model User {
   id        String     @id @default(uuid())
-  email     String
+  name      String
+  username  String     @unique
+  email     String     @unique
   password  String
   admin     Boolean    @default(false)
   avatar    String?
@@ -19,6 +21,18 @@ model User {
   deletedAt DateTime?
   recipes   Recipe[]
   favorites Favorite[]
+  sessions  Session[]
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  refreshToken String
+  device       String
+  ip           String
+  createdAt    DateTime @default(now())
+  expiresAt    DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Recipe {
