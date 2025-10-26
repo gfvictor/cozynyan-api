@@ -1,0 +1,6 @@
+{
+  "name": "@cozynyan/common",
+  "version": "1.0.0",
+  "description": "common use files",
+  "main": "index.ts"
+}
